@@ -1,3 +1,3 @@
 @echo off
-"C:\Program Files\lua\lua54" scripts/script.lua
+"C:\Program Files\lua\lua54" scripts/egg.lua
 pause
