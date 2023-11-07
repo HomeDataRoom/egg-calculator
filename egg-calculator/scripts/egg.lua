@@ -166,7 +166,7 @@ end
 if successConfidence > 0.5 then
     print("\nBased on these results, you are very likely to finish the contract goal by its deadline. Congratulations!")
 else
-    if successConfidence <= 0.5 then
+    if successConfidence < 0.5 then
         print("\nBased on these results, you are unlikely to finish the contract goal by its deadline. Consider purchasing additional research, using boosts, or restarting the contract.")
     else
         print("\nBased on these results, the calculator is unsure whether you will finish the contract by its deadline or not. Restart the script, or try again later when more progress has been made in the contract.")
