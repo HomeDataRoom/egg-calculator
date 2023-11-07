@@ -1,5 +1,5 @@
 -- Prints basic information about the script
-scriptVersion = "0.1"
+scriptVersion = "0.2"
 lastUpdatedDate = "11/7/2023"
 print("Welcome to the Egg Calculator, version " .. scriptVersion .. " last updated " .. lastUpdatedDate .. ".")
 githubLink = "https://github.com/homedataroom/egg-calculator"
