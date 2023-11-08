@@ -148,7 +148,7 @@ else
     print("\nYou will need to increase your shipping rate by " .. deficit .. " trillion in order to meet this requirement.")
 end
 
-eggsPerChicken = (eggsPerMinute / chickens) * 1000
+eggsPerChicken = (eggsPerMinute / chickens) * 1000000
 totalInternalHatchery = internalHatchery * 4
 totalInternalHatcheryPerHour = totalInternalHatchery * 60
 totalInternalHatcheryPerDay = totalInternalHatcheryPerHour * 24
