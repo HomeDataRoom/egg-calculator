@@ -155,7 +155,7 @@ totalInternalHatcheryPerDay = totalInternalHatcheryPerHour * 24
 chickensByEnd = (totalInternalHatcheryPerDay / daysRemaining) + chickens
 roundedChickensByEnd = tonumber(string.format("%.2f", chickensByEnd))
 projectedRateMinute = eggsPerChicken * chickensByEnd
-print("\nEach chicken on your farm is laying " .. eggsPerChicken .. " eggs per minute. By the end of the contract, your farm will have at least " .. chickensByEnd .. " chickens on it.")
+print("\nEach chicken on your farm is laying " .. eggsPerChicken .. " eggs per minute. By the end of the contract, your farm will have at least " .. roundedChickensByEnd .. " chickens on it.")
 projectedRateHour = projectedRateMinute * 60
 trillionProjectedRateHour = projectedRateHour / 1000
 print("If your egg laying rate stays consistent, your farm will be producing " .. trillionProjectedRateHour .. " trillion eggs per hour by the end of the contract.")
