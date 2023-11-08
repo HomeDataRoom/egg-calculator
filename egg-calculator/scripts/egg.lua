@@ -1,6 +1,6 @@
 -- Prints basic information about the script
-scriptVersion = "0.1"
-lastUpdatedDate = "11/7/2023"
+scriptVersion = "0.2"
+lastUpdatedDate = "11/8/2023"
 print("Welcome to the Egg Calculator, version " .. scriptVersion .. " last updated " .. lastUpdatedDate .. ".")
 githubLink = "https://github.com/homedataroom/egg-calculator"
 print("If you experience issues with this script or would like to know more about it, please visit the repository at " .. githubLink .. ".")
@@ -9,7 +9,7 @@ print("\nTo ensure accurate projections, please set up your farm and ensure at l
 -- Determines whether the user is doing a solo or co-op contract
 potentialContractTypes = {"1 - Solo", "2 - Co-op"}
 activeContractType = nil
-while activeContractType ~= "1" and activeContractType ~= "2" do
+while activeContractType ~= 1 and activeContractType ~= 2 do
     print("\nThe available types of contracts are: ")
     for i, v in ipairs(potentialContractTypes) do
         print(v)
@@ -17,7 +17,7 @@ while activeContractType ~= "1" and activeContractType ~= "2" do
     io.write("\nPlease select which type of contract you are currently doing:\n")
     local userInput = io.read()
     if userInput == "1" or userInput == "2" then
-        activeContractType = userInput
+        activeContractType = tonumber(userInput)
         print("Contract type " .. activeContractType .. " selected.")
     else
         -- Prints an error message if anything other than 1 or 2 is typed
@@ -148,14 +148,14 @@ else
     print("\nYou will need to increase your shipping rate by " .. deficit .. " trillion in order to meet this requirement.")
 end
 
-eggsPerChicken = (eggsPerMinute / chickens) * 1000
+eggsPerChicken = (eggsPerMinute / chickens) * 1000000
 totalInternalHatchery = internalHatchery * 4
 totalInternalHatcheryPerHour = totalInternalHatchery * 60
 totalInternalHatcheryPerDay = totalInternalHatcheryPerHour * 24
 chickensByEnd = (totalInternalHatcheryPerDay / daysRemaining) + chickens
 roundedChickensByEnd = tonumber(string.format("%.2f", chickensByEnd))
 projectedRateMinute = eggsPerChicken * chickensByEnd
-print("\nEach chicken on your farm is laying " .. eggsPerChicken .. " eggs per minute. By the end of the contract, your farm will have at least " .. chickensByEnd .. " chickens on it.")
+print("\nEach chicken on your farm is laying " .. eggsPerChicken .. " eggs per minute. By the end of the contract, your farm will have at least " .. roundedChickensByEnd .. " chickens on it.")
 projectedRateHour = projectedRateMinute * 60
 trillionProjectedRateHour = projectedRateHour / 1000
 print("If your egg laying rate stays consistent, your farm will be producing " .. trillionProjectedRateHour .. " trillion eggs per hour by the end of the contract.")
@@ -166,13 +166,13 @@ end
 if successConfidence > 0.5 then
     print("\nBased on these results, you are very likely to finish the contract goal by its deadline. Congratulations!")
 else
-    if successConfidence <= 0.5 then
+    if successConfidence < 0.5 then
         print("\nBased on these results, you are unlikely to finish the contract goal by its deadline. Consider purchasing additional research, using boosts, or restarting the contract.")
     else
         print("\nBased on these results, the calculator is unsure whether you will finish the contract by its deadline or not. Restart the script, or try again later when more progress has been made in the contract.")
     end
 end
-print("If you believe this result to be in error, please report it at " .. githubLink .. ".")
+print("If you believe this script's output to be incorrect, please report it at " .. githubLink .. ".")
 
 -- Optional information about the user's co-op
 if activeContractType == 2 then
@@ -183,6 +183,6 @@ if activeContractType == 2 then
     roundedUserProportionOfCoop = tonumber(string.format("%.2f", userProportionOfCoop))
     print("Without you, they'd be shipping " .. coopDifference .. " trillion eggs per hour. That means you're shipping about " .. roundedUserProportionOfCoop .. "% of the eggs in the co-op.")
     if coopDifference > trillionEggsPerHour then
-        print("\n Wow! You are shipping more eggs than the rest of your coop combined!")
+        print("\n ow! You are shipping more eggs than the rest of your coop combined!")
     end
 end
