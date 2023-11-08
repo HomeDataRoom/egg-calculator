@@ -183,6 +183,6 @@ if activeContractType == 2 then
     roundedUserProportionOfCoop = tonumber(string.format("%.2f", userProportionOfCoop))
     print("Without you, they'd be shipping " .. coopDifference .. " trillion eggs per hour. That means you're shipping about " .. roundedUserProportionOfCoop .. "% of the eggs in the co-op.")
     if coopDifference > trillionEggsPerHour then
-        print("\n ow! You are shipping more eggs than the rest of your coop combined!")
+        print("\nWow! You are shipping more eggs than the rest of your coop combined!")
     end
 end
