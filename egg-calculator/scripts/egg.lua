@@ -9,7 +9,7 @@ print("\nTo ensure accurate projections, please set up your farm and ensure at l
 -- Determines whether the user is doing a solo or co-op contract
 potentialContractTypes = {"1 - Solo", "2 - Co-op"}
 activeContractType = nil
-while activeContractType ~= "1" and activeContractType ~= "2" do
+while activeContractType ~= 1 and activeContractType ~= 2 do
     print("\nThe available types of contracts are: ")
     for i, v in ipairs(potentialContractTypes) do
         print(v)
@@ -17,7 +17,7 @@ while activeContractType ~= "1" and activeContractType ~= "2" do
     io.write("\nPlease select which type of contract you are currently doing:\n")
     local userInput = io.read()
     if userInput == "1" or userInput == "2" then
-        activeContractType = userInput
+        activeContractType = tonumber(userInput)
         print("Contract type " .. activeContractType .. " selected.")
     else
         -- Prints an error message if anything other than 1 or 2 is typed
