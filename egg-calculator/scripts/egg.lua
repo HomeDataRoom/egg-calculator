@@ -1,6 +1,6 @@
 -- Prints basic information about the script
 scriptVersion = "0.3"
-lastUpdatedDate = "11/8/2023"
+lastUpdatedDate = "11/9/2023"
 print("Welcome to the Egg Calculator, version " .. scriptVersion .. " last updated " .. lastUpdatedDate .. ".")
 githubLink = "https://github.com/homedataroom/egg-calculator"
 print("If you experience issues with this script or would like to know more about it, please visit the repository at " .. githubLink .. ".")
@@ -180,7 +180,7 @@ if activeContractType == 2 then
     print("\nYou are shipping " .. trillionEggsPerHour .. " trillion eggs per hour. Your co-op is shipping " .. coopEggsPerHour .. " trillion eggs per hour.")
     coopDifference = coopEggsPerHour - trillionEggsPerHour
     userProportionOfCoop = (trillionEggsPerHour / coopEggsPerHour) * 100
-    roundedUserProportionOfCoop = tonumber(string.format("%.2f", userProportionOfCoop))
+    roundedUserProportionOfCoop = math.ceil(userProportionOfCoop)
     print("Without you, they'd be shipping " .. coopDifference .. " trillion eggs per hour. That means you're shipping about " .. roundedUserProportionOfCoop .. "% of the eggs in the co-op.")
     --[[ if coopDifference > trillionEggsPerHour then
         print("\nWow! You are shipping more eggs than the rest of your coop combined!")
