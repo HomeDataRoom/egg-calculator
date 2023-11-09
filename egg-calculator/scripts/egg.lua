@@ -141,6 +141,7 @@ end
 
 if totalPerHour >= trillionEggsRemainingPerHour then
     addConfidence(0.5)
+    deficit = 0
     print("\nIt looks like you are already doing that.")
 else
     successConfidence = 0
