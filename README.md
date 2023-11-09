@@ -2,6 +2,8 @@
 A Lua script to help with *Egg, Inc.* contracts by the HomeDataRoom team. Currently in active development.
 
 When you run this script, it will ask you several questions about your farm (and co-op if applicable). It then makes predictions about what your farm will be like by the end of the contract and whether or not you will be able to meet the contract goal.
+## Disclaimer
+This is a Lua script that performs calculations using numbers manually provided to it by the user. It does not interact with your Egg, Inc. game in any way.
 ## Prerequisites
 This script was written for [Lua 5.4.6](https://www.lua.org/). However, it should work with any recent version of Lua.
 ## Installation

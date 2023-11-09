@@ -1,10 +1,16 @@
 -- Prints basic information about the script
-scriptVersion = "0.2"
-lastUpdatedDate = "11/8/2023"
+scriptVersion = "0.3"
+lastUpdatedDate = "11/9/2023"
 print("Welcome to the Egg Calculator, version " .. scriptVersion .. " last updated " .. lastUpdatedDate .. ".")
 githubLink = "https://github.com/homedataroom/egg-calculator"
 print("If you experience issues with this script or would like to know more about it, please visit the repository at " .. githubLink .. ".")
 print("\nTo ensure accurate projections, please set up your farm and ensure at least a few million eggs are being produced/shipped per minute.")
+
+-- Enables or disables developer mode for viewing all variables.
+dev = 0
+if dev == 1 then
+    print("\nDeveloper mode is enabled.")
+end
 
 -- Determines whether the user is doing a solo or co-op contract
 potentialContractTypes = {"1 - Solo", "2 - Co-op"}
@@ -141,6 +147,7 @@ end
 
 if totalPerHour >= trillionEggsRemainingPerHour then
     addConfidence(0.5)
+    deficit = 0
     print("\nIt looks like you are already doing that.")
 else
     successConfidence = 0
@@ -153,7 +160,7 @@ totalInternalHatchery = internalHatchery * 4
 totalInternalHatcheryPerHour = totalInternalHatchery * 60
 totalInternalHatcheryPerDay = totalInternalHatcheryPerHour * 24
 chickensByEnd = (totalInternalHatcheryPerDay / daysRemaining) + chickens
-roundedChickensByEnd = tonumber(string.format("%.2f", chickensByEnd))
+roundedChickensByEnd = math.floor(chickensByEnd)
 projectedRateMinute = eggsPerChicken * chickensByEnd
 print("\nEach chicken on your farm is laying " .. eggsPerChicken .. " eggs per minute. By the end of the contract, your farm will have at least " .. roundedChickensByEnd .. " chickens on it.")
 projectedRateHour = projectedRateMinute * 60
@@ -180,9 +187,57 @@ if activeContractType == 2 then
     print("\nYou are shipping " .. trillionEggsPerHour .. " trillion eggs per hour. Your co-op is shipping " .. coopEggsPerHour .. " trillion eggs per hour.")
     coopDifference = coopEggsPerHour - trillionEggsPerHour
     userProportionOfCoop = (trillionEggsPerHour / coopEggsPerHour) * 100
-    roundedUserProportionOfCoop = tonumber(string.format("%.2f", userProportionOfCoop))
+    roundedUserProportionOfCoop = math.ceil(userProportionOfCoop)
     print("Without you, they'd be shipping " .. coopDifference .. " trillion eggs per hour. That means you're shipping about " .. roundedUserProportionOfCoop .. "% of the eggs in the co-op.")
-    if coopDifference > trillionEggsPerHour then
+    --[[ if coopDifference > trillionEggsPerHour then
         print("\nWow! You are shipping more eggs than the rest of your coop combined!")
+    end ]]
+end
+
+-- If developer mode is enabled, prints the names of all variables and their current values
+if dev == 1 then
+    print("\nDeveloper mode is enabled. Here are all variables stored by the script, and their current values:")
+    print("\nscriptVersion: " .. scriptVersion .."")
+    print("lastUpdatedDate: " .. lastUpdatedDate .."")
+    print("githubLink: " .. githubLink .."")
+    print("dev: " .. dev .."")
+    print("potentialContractTypes: ")
+    for i, v in ipairs(potentialContractTypes) do
+        print(v)
     end
+    print("activeContractType: " .. activeContractType .."")
+    print("chickens: " .. chickens .."")
+    print("millionChickens: " .. millionChickens .."")
+    print("eggsPerSecond: " .. eggsPerSecond .."")
+    print("eggsPerMinute: " .. eggsPerMinute .."")
+    print("eggsPerHour: " .. eggsPerHour .."")
+    print("eggsPerDay: " .. eggsPerDay .."")
+    print("coopEggsPerHour: " .. coopEggsPerHour .."")
+    print("coopEggsPerMinute: " .. coopEggsPerMinute .."")
+    print("coopEggsPerSecond: " .. coopEggsPerSecond .."")
+    print("coopEggsPerDay: " .. coopEggsPerDay .."")
+    print("internalHatchery: " .. internalHatchery .."")
+    print("contractGoal: " .. contractGoal .."")
+    print("eggsDelivered: " .. eggsDelivered .."")
+    print("eggsRemaining: " .. eggsRemaining .."")
+    print("daysRemaining: " .. daysRemaining .."")
+    print("hoursRemaining: " .. hoursRemaining .."")
+    print("successConfidence: " .. successConfidence .."")
+    print("trillionEggsPerHour: " .. trillionEggsPerHour .."")
+    print("totalPerHour: " .. totalPerHour .."")
+    print("eggsRemainingPerHour: " .. eggsRemainingPerHour .."")
+    print("trillionEggsRemainingPerHour: " .. trillionEggsRemainingPerHour .."")
+    print("deficit: " .. deficit .."")
+    print("eggsPerChicken: " .. eggsPerChicken .."")
+    print("totalInternalHatchery: " .. totalInternalHatchery .."")
+    print("totalInternalHatcheryPerHour: " .. totalInternalHatcheryPerHour .."")
+    print("totalInternalHatcheryPerDay: " .. totalInternalHatcheryPerDay .."")
+    print("chickensByEnd: " .. chickensByEnd .."")
+    print("roundedChickensByEnd: " .. roundedChickensByEnd .."")
+    print("projectedRateMinute: " .. projectedRateMinute .."")
+    print("projectedRateHour: " .. projectedRateHour .."")
+    print("trillionProjectedRateHour: " .. trillionProjectedRateHour .."")
+    print("coopDifference: " .. coopDifference .."")
+    print("userProportionOfCoop: " .. userProportionOfCoop .."")
+    print("roundedUserProportionOfCoop: " .. roundedUserProportionOfCoop .."")
 end
