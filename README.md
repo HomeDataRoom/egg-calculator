@@ -1,5 +1,5 @@
 # Egg Calculator
-A Lua script to help with *Egg, Inc.* contracts by the HomeDataRoom team. Currently in active development.
+A Lua script to help with *Egg, Inc.* contracts by the HomeDataRoom team. **Currently in active development. Expect bugs and weird behavior for now.**
 
 When you run this script, it will ask you several questions about your farm (and co-op if applicable). It then makes predictions about what your farm will be like by the end of the contract and whether or not you will be able to meet the contract goal.
 ## Disclaimer
