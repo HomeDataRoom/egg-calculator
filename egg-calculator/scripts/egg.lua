@@ -160,7 +160,6 @@ totalInternalHatchery = internalHatchery * 4
 totalInternalHatcheryPerHour = totalInternalHatchery * 60
 totalInternalHatcheryPerDay = totalInternalHatcheryPerHour * 24
 chickensByEnd = math.floor((totalInternalHatcheryPerDay / daysRemaining) + chickens)
--- Declare a variable called projectedRateMinute that determines how many eggs the farm will be laying by the time chickens is chickensByEnd
 projectedRateMinute = (chickensByEnd * eggsPerChicken) / 60
 print("\nEach chicken on your farm is laying " .. eggsPerChicken .. " eggs per second. By the end of the contract, your farm will have at least " .. chickensByEnd .. " chickens on it.")
 projectedRateHour = projectedRateMinute * 60
