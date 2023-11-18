@@ -1,6 +1,6 @@
 -- Prints basic information about the script
-scriptVersion = "0.3"
-lastUpdatedDate = "11/9/2023"
+scriptVersion = "0.4"
+lastUpdatedDate = "11/18/2023"
 print("Welcome to the Egg Calculator, version " .. scriptVersion .. " last updated " .. lastUpdatedDate .. ".")
 githubLink = "https://github.com/homedataroom/egg-calculator"
 print("If you experience issues with this script or would like to know more about it, please visit the repository at " .. githubLink .. ".")
@@ -155,14 +155,14 @@ else
     print("\nYou will need to increase your shipping rate by " .. deficit .. " trillion in order to meet this requirement.")
 end
 
-eggsPerChicken = (eggsPerMinute / chickens) * 1000000
+eggsPerChicken = math.floor((eggsPerSecond / chickens) * 1000000000)
 totalInternalHatchery = internalHatchery * 4
 totalInternalHatcheryPerHour = totalInternalHatchery * 60
 totalInternalHatcheryPerDay = totalInternalHatcheryPerHour * 24
-chickensByEnd = (totalInternalHatcheryPerDay / daysRemaining) + chickens
-roundedChickensByEnd = math.floor(chickensByEnd)
-projectedRateMinute = eggsPerChicken * chickensByEnd
-print("\nEach chicken on your farm is laying " .. eggsPerChicken .. " eggs per minute. By the end of the contract, your farm will have at least " .. roundedChickensByEnd .. " chickens on it.")
+chickensByEnd = math.floor((totalInternalHatcheryPerDay / daysRemaining) + chickens)
+-- Declare a variable called projectedRateMinute that determines how many eggs the farm will be laying by the time chickens is chickensByEnd
+projectedRateMinute = (chickensByEnd * eggsPerChicken) / 60
+print("\nEach chicken on your farm is laying " .. eggsPerChicken .. " eggs per second. By the end of the contract, your farm will have at least " .. chickensByEnd .. " chickens on it.")
 projectedRateHour = projectedRateMinute * 60
 trillionProjectedRateHour = projectedRateHour / 1000
 print("If your egg laying rate stays consistent, your farm will be producing " .. trillionProjectedRateHour .. " trillion eggs per hour by the end of the contract.")
@@ -233,7 +233,6 @@ if dev == 1 then
     print("totalInternalHatcheryPerHour: " .. totalInternalHatcheryPerHour .."")
     print("totalInternalHatcheryPerDay: " .. totalInternalHatcheryPerDay .."")
     print("chickensByEnd: " .. chickensByEnd .."")
-    print("roundedChickensByEnd: " .. roundedChickensByEnd .."")
     print("projectedRateMinute: " .. projectedRateMinute .."")
     print("projectedRateHour: " .. projectedRateHour .."")
     print("trillionProjectedRateHour: " .. trillionProjectedRateHour .."")
