@@ -1,6 +1,6 @@
 -- Prints basic information about the script
 scriptVersion = "0.5"
-lastUpdatedDate = "11/18/2023"
+lastUpdatedDate = "11/19/2023"
 print("Welcome to the Egg Calculator, version " .. scriptVersion .. " last updated " .. lastUpdatedDate .. ".")
 githubLink = "https://github.com/homedataroom/egg-calculator"
 print("If you experience issues with this script or would like to know more about it, please visit the repository at " .. githubLink .. ".")
@@ -31,6 +31,18 @@ while activeContractType ~= 1 and activeContractType ~= 2 do
     end
 end
 
+-- Determines the current egg shipping rate
+eggsPerSecond = nil
+while eggsPerSecond == nil do
+    io.write("\nHow many eggs, in billions, is your farm shipping per second? (Top middle)\n")
+    local userInput = io.read()
+    eggsPerSecond = tonumber(userInput)
+    print("Great. You are shipping " .. eggsPerSecond .. " billion eggs per second.")
+    eggsPerMinute = eggsPerSecond * 60
+    eggsPerHour = eggsPerMinute * 60
+    eggsPerDay = eggsPerHour * 24
+end
+
 -- Determines the contract goal
 contractGoal = nil
 while contractGoal == nil do
@@ -45,15 +57,14 @@ while contractGoal == nil do
     end
 end
 
--- Determines how many eggs have already been delivered, and how many are remaining
-eggsDelivered = nil
-while eggsDelivered == nil do
-    io.write ("\nHow many eggs, in quadrillions, have already been delivered? (Farm > Delivered)\n")
+-- Determines how much time is left to complete the contract
+daysRemaining = nil
+while daysRemaining == nil do
+    io.write("\nHow many days are left to complete the contract? (Farm)\n")
     local userInput = io.read()
-    eggsDelivered = tonumber(userInput)
-    print("Great. " .. eggsDelivered .. " quadrillion eggs have already been delivered.")
-    eggsRemaining = contractGoal - eggsDelivered
-    print("That means you only have " .. eggsRemaining .. " to go!")
+    daysRemaining = tonumber(userInput)
+    hoursRemaining = daysRemaining * 24
+    print("Great. There are " .. daysRemaining .. " days left to complete the contract.")
 end
 
 -- If applicable, determines the shipping rate of the co-op
@@ -70,14 +81,19 @@ if activeContractType == 2 then
     end
 end
 
--- Determines how much time is left to complete the contract
-daysRemaining = nil
-while daysRemaining == nil do
-    io.write("\nHow many days are left to complete the contract? (Farm)\n")
+-- Determines how many eggs have already been delivered, and how many are remaining
+eggsDelivered = nil
+while eggsDelivered == nil do
+    io.write ("\nHow many eggs, in quadrillions, have already been delivered? (Farm > Delivered)\n")
     local userInput = io.read()
-    daysRemaining = tonumber(userInput)
-    hoursRemaining = daysRemaining * 24
-    print("Great. There are " .. daysRemaining .. " left to complete the contract.")
+    eggsDelivered = tonumber(userInput)
+    print("Great. " .. eggsDelivered .. " quadrillion eggs have already been delivered.")
+    eggsRemaining = contractGoal - eggsDelivered
+    eggsRemainingPerHour = eggsRemaining / hoursRemaining
+    trillionEggsRemainingPerHour = eggsRemainingPerHour * 1000
+    trillionEggsPerHour = eggsPerHour / 1000
+    coopDifference = coopEggsPerHour - trillionEggsPerHour
+    print("That means you only have " .. eggsRemaining .. " to go!")
 end
 
 -- Determines how many chickens are on the user's farm
@@ -94,18 +110,6 @@ while chickens == nil do
         -- Prints an error message if a number less than 1,000 is typed
         print("Error: you need to have at least 1,000 chickens producing eggs. Hatch more chickens before continuing.")
     end
-end
-
--- Determines the current egg shipping rate
-eggsPerSecond = nil
-while eggsPerSecond == nil do
-    io.write("\nHow many eggs, in billions, is your farm shipping per second? (Top middle)\n")
-    local userInput = io.read()
-    eggsPerSecond = tonumber(userInput)
-    print("Great. You are shipping " .. eggsPerSecond .. " billion eggs per second.")
-    eggsPerMinute = eggsPerSecond * 60
-    eggsPerHour = eggsPerMinute * 60
-    eggsPerDay = eggsPerHour * 24
 end
 
 -- Determines the current internal hatchery rate, per habitat, per minute
@@ -131,14 +135,12 @@ end
 -- Outputs results
 print("\nBased on the information you provided, you have " .. daysRemaining .. " days to deliver " .. eggsRemaining .. " quadrillion more eggs.")
 
-trillionEggsPerHour = eggsPerHour / 1000
 if activeContractType == 2 then
     totalPerHour = trillionEggsPerHour + coopEggsPerHour 
 else
     totalPerHour = trillionEggsPerHour
 end
-eggsRemainingPerHour = eggsRemaining / hoursRemaining
-trillionEggsRemainingPerHour = eggsRemainingPerHour * 1000
+
 if activeContractType == 2 then
     print("That means your co-op needs to deliver " .. trillionEggsRemainingPerHour .. " trillion eggs per hour for the remainder of the contract.")
 else
@@ -184,7 +186,6 @@ print("If you believe this script's output to be incorrect, please report it at 
 if activeContractType == 2 then
     print("\nSince you are in a co-op, here is some extra information you may find helpful:")
     print("\nYou are shipping " .. trillionEggsPerHour .. " trillion eggs per hour. Your co-op is shipping " .. coopEggsPerHour .. " trillion eggs per hour.")
-    coopDifference = coopEggsPerHour - trillionEggsPerHour
     userProportionOfCoop = (trillionEggsPerHour / coopEggsPerHour) * 100
     roundedUserProportionOfCoop = math.ceil(userProportionOfCoop)
     print("Without you, they'd be shipping " .. coopDifference .. " trillion eggs per hour. That means you're shipping about " .. roundedUserProportionOfCoop .. "% of the eggs in the co-op.")
