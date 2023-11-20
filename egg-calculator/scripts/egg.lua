@@ -71,13 +71,13 @@ end
 coopEggsPerHour = nil
 if activeContractType == 2 then
     while coopEggsPerHour == nil do
-    io.write("\nHow many eggs, in trillions, is your co-op shipping per hour? (Farm > Rate)\n")
-    local userInput = io.read()
-    coopEggsPerHour = tonumber(userInput)
-    print("Great. Your coop is shipping " .. coopEggsPerHour .. " trillion eggs per hour.")
-    coopEggsPerMinute = coopEggsPerHour / 60
-    coopEggsPerSecond = coopEggsPerMinute / 60
-    coopEggsPerDay = coopEggsPerHour * 24
+        io.write("\nHow many eggs, in trillions, is your co-op shipping per hour? (Farm > Rate)\n")
+        local userInput = io.read()
+        coopEggsPerHour = tonumber(userInput)
+        print("Great. Your coop is shipping " .. coopEggsPerHour .. " trillion eggs per hour.")
+        coopEggsPerMinute = coopEggsPerHour / 60
+        coopEggsPerSecond = coopEggsPerMinute / 60
+        coopEggsPerDay = coopEggsPerHour * 24
     end
 end
 
@@ -86,14 +86,22 @@ eggsDelivered = nil
 while eggsDelivered == nil do
     io.write ("\nHow many eggs, in quadrillions, have already been delivered? (Farm > Delivered)\n")
     local userInput = io.read()
-    eggsDelivered = tonumber(userInput)
-    print("Great. " .. eggsDelivered .. " quadrillion eggs have already been delivered.")
-    eggsRemaining = contractGoal - eggsDelivered
+    eggsRemaining = contractGoal - tonumber(userInput)
     eggsRemainingPerHour = eggsRemaining / hoursRemaining
     trillionEggsRemainingPerHour = eggsRemainingPerHour * 1000
     trillionEggsPerHour = eggsPerHour / 1000
-    coopDifference = coopEggsPerHour - trillionEggsPerHour
-    print("That means you only have " .. eggsRemaining .. " to go!")
+    if activeContractType == 2 then
+        coopDifference = coopEggsPerHour - trillionEggsPerHour
+    else
+        coopDifference = 0
+    end
+    if coopDifference >= 0 or activeContractType ~= 2 then
+        eggsDelivered = tonumber(userInput)
+        print("Great. " .. eggsDelivered .. " quadrillion eggs have already been delivered.")
+        print("That means you only have " .. eggsRemaining .. " to go!")
+    else
+        print("Error: Your co-op difference cannot be negative. Please check your input and try again, or restart the script.")
+    end
 end
 
 -- Determines how many chickens are on the user's farm
