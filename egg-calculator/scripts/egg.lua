@@ -1,13 +1,13 @@
 -- Prints basic information about the script
 scriptVersion = "0.5"
-lastUpdatedDate = "11/19/2023"
+lastUpdatedDate = "11/20/2023"
 print("Welcome to the Egg Calculator, version " .. scriptVersion .. " last updated " .. lastUpdatedDate .. ".")
 githubLink = "https://github.com/homedataroom/egg-calculator"
 print("If you experience issues with this script or would like to know more about it, please visit the repository at " .. githubLink .. ".")
 print("\nTo ensure accurate projections, please set up your farm and ensure at least a few million eggs are being produced/shipped per minute.")
 
 -- Enables or disables developer mode for viewing all variables.
-dev = 1
+dev = 0
 if dev == 1 then
     print("\nDeveloper mode is enabled.")
 end
