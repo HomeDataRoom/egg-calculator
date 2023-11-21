@@ -1,15 +1,23 @@
--- Prints basic information about the script
-scriptVersion = "0.5"
-lastUpdatedDate = "11/20/2023"
+scriptVersion = "0.6" -- The current version of the script
+lastUpdatedDate = "11/20/2023" -- The date at which the script was last updated
 print("Welcome to the Egg Calculator, version " .. scriptVersion .. " last updated " .. lastUpdatedDate .. ".")
-githubLink = "https://github.com/homedataroom/egg-calculator"
+githubLink = "https://github.com/homedataroom/egg-calculator" -- The link to the script's GitHub repository
 print("If you experience issues with this script or would like to know more about it, please visit the repository at " .. githubLink .. ".")
 print("\nTo ensure accurate projections, please set up your farm and ensure at least a few million eggs are being produced/shipped per minute.")
 
--- Enables or disables developer mode for viewing all variables.
-dev = 0
+dev = 0 -- Whether developer mode is enabled or not. 0 = disabled, 1 = enabled
 if dev == 1 then
     print("\nDeveloper mode is enabled.")
+end
+
+successConfidence = 0.5 -- The calculated probability of completing the contract
+function addConfidence(amount) -- Adds to the confidence value
+    successConfidence = successConfidence + amount
+end
+
+function makeReadable(number) -- Converts a number to a more human-readable format
+    local left,num,right = string.match(number,'^([^%d]*%d)(%d*)(.-)$')
+    return left..(num:reverse():gsub('(%d%d%d)','%1,'):reverse())..right
 end
 
 -- Determines whether the user is doing a solo or co-op contract
@@ -88,7 +96,7 @@ while eggsDelivered == nil do
     local userInput = io.read()
     eggsRemaining = contractGoal - tonumber(userInput)
     eggsRemainingPerHour = eggsRemaining / hoursRemaining
-    trillionEggsRemainingPerHour = eggsRemainingPerHour * 1000
+    trillionEggsRemainingPerHour = math.ceil(eggsRemainingPerHour * 1000)
     trillionEggsPerHour = eggsPerHour / 1000
     if activeContractType == 2 then
         coopDifference = coopEggsPerHour - trillionEggsPerHour
@@ -104,15 +112,14 @@ while eggsDelivered == nil do
     end
 end
 
--- Determines how many chickens are on the user's farm
-chickens = nil
+chickens = nil -- The number of chickens on the user's farm
 while chickens == nil do
     print("\nHow many chickens are currently on your farm? (Top left)")
     io.write("This doesn't have to be an exact number; it can be a rough estimate, but should be at least 1,000.\n")
     local userInput = io.read()
     if tonumber(userInput) >= 1000 then
         chickens = userInput
-        print("Great. You have " .. chickens .. " chickens on your farm.")
+        print("Great. You have " .. makeReadable(chickens) .. " chickens on your farm.")
         millionChickens = chickens / 1000000
     else
         -- Prints an error message if a number less than 1,000 is typed
@@ -132,12 +139,6 @@ while internalHatchery == nil do
         -- Prints an error message if there are no internal hatchery upgrades
         print("Error: you need to have at least 1 internal hatchery rate. Upgrade your internal hatcheries before continuing.")
     end
-end
-
--- Declares a function to add confidence
-successConfidence = 0.5
-function addConfidence(amount)
-    successConfidence = successConfidence + amount
 end
 
 -- Outputs results
@@ -197,9 +198,6 @@ if activeContractType == 2 then
     userProportionOfCoop = (trillionEggsPerHour / coopEggsPerHour) * 100
     roundedUserProportionOfCoop = math.ceil(userProportionOfCoop)
     print("Without you, they'd be shipping " .. coopDifference .. " trillion eggs per hour. That means you're shipping about " .. roundedUserProportionOfCoop .. "% of the eggs in the co-op.")
-    --[[ if coopDifference > trillionEggsPerHour then
-        print("\nWow! You are shipping more eggs than the rest of your coop combined!")
-    end ]]
 end
 
 -- If developer mode is enabled, prints the names of all variables and their current values
