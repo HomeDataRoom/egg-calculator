@@ -5,7 +5,7 @@ When you run this script, it will ask you several questions about your farm (and
 ## Disclaimer
 This is a Lua script that performs calculations using numbers manually provided to it by the user. It does not interact with your Egg, Inc. game in any way.
 ## Prerequisites
-This script was written for [Lua 5.4.6](https://www.lua.org/). However, it should work with any recent version of Lua.
+This script was written for [Lua 5.4.6](https://www.lua.org/versions.html#5.4). However, it should work with any recent version of Lua.
 ## Installation
 1. Install [Lua](https://www.lua.org/).
 2. Download the latest version of the script from the [releases](https://github.com/HomeDataRoom/egg-calculator/releases) page.
