@@ -1,5 +1,5 @@
 scriptVersion = "0.6" -- The current version of the script
-lastUpdatedDate = "11/20/2023" -- The date at which the script was last updated
+lastUpdatedDate = "11/22/2023" -- The date at which the script was last updated
 print("Welcome to the Egg Calculator, version " .. scriptVersion .. " last updated " .. lastUpdatedDate .. ".")
 githubLink = "https://github.com/homedataroom/egg-calculator" -- The link to the script's GitHub repository
 print("If you experience issues with this script or would like to know more about it, please visit the repository at " .. githubLink .. ".")
@@ -130,7 +130,7 @@ end
 -- Determines the current internal hatchery rate, per habitat, per minute
 internalHatchery = nil
 while internalHatchery == nil do
-    io.write("\nWhat is your current internal hatchery rate? (Main Menu > Stats > Int. Hatchery Rate)\n")
+    io.write("\nWhat is your current internal hatchery rate? (Main Menu > Stats > Int. Hatchery Rate, usually around 7,500)\n")
     local userInput = io.read()
     if tonumber(userInput) >= 1 then
         internalHatchery = userInput
@@ -174,7 +174,7 @@ chickensByEnd = math.floor((totalInternalHatcheryPerDay / daysRemaining) + chick
 projectedRateMinute = (chickensByEnd * eggsPerChicken) / 60
 print("\nEach chicken on your farm is laying " .. eggsPerChicken .. " eggs per second. By the end of the contract, your farm will have at least " .. makeReadable(chickensByEnd) .. " chickens on it.")
 projectedRateHour = projectedRateMinute * 60
-trillionProjectedRateHour = projectedRateHour / 1000
+trillionProjectedRateHour = projectedRateHour / 1000000
 print("If your egg laying rate stays consistent, your farm will be producing " .. trillionProjectedRateHour .. " trillion eggs per hour by the end of the contract.")
 if trillionProjectedRateHour >= trillionEggsRemainingPerHour then
     addConfidence(0.5)
@@ -189,7 +189,7 @@ else
         print("\nBased on these results, the calculator is unsure whether you will finish the contract by its deadline or not. Restart the script, or try again later when more progress has been made in the contract.")
     end
 end
-print("If you believe this script's output to be incorrect, please report it at " .. githubLink .. ".")
+print("If you believe this script's output to be incorrect, please report it at " .. githubLink .. ".\n")
 
 -- Optional information about the user's co-op
 if activeContractType == 2 then
