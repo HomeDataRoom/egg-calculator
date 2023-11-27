@@ -113,7 +113,7 @@ while eggsDelivered == nil do
 end
 
 chickens = nil -- The number of chickens on the user's farm
-maxPossibleChickens = 19845000000
+maxPossibleChickens = 19845000000 -- The maximum possible number of chickens on a farm
 while chickens == nil do
     print("\nHow many chickens are currently on your farm? (Top left)")
     io.write("This doesn't have to be an exact number; it can be a rough estimate, but should be at least 1,000.\n")
