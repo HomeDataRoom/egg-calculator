@@ -1,5 +1,5 @@
-scriptVersion = "0.6" -- The current version of the script
-lastUpdatedDate = "11/22/2023" -- The date at which the script was last updated
+scriptVersion = "0.7" -- The current version of the script
+lastUpdatedDate = "11/27/2023" -- The date at which the script was last updated
 print("Welcome to the Egg Calculator, version " .. scriptVersion .. " last updated " .. lastUpdatedDate .. ".")
 githubLink = "https://github.com/homedataroom/egg-calculator" -- The link to the script's GitHub repository
 print("If you experience issues with this script or would like to know more about it, please visit the repository at " .. githubLink .. ".")
@@ -113,6 +113,7 @@ while eggsDelivered == nil do
 end
 
 chickens = nil -- The number of chickens on the user's farm
+maxPossibleChickens = 19845000000
 while chickens == nil do
     print("\nHow many chickens are currently on your farm? (Top left)")
     io.write("This doesn't have to be an exact number; it can be a rough estimate, but should be at least 1,000.\n")
@@ -245,4 +246,5 @@ if dev == 1 then
     print("coopDifference: " .. coopDifference .."")
     print("userProportionOfCoop: " .. userProportionOfCoop .."")
     print("roundedUserProportionOfCoop: " .. roundedUserProportionOfCoop .."")
+    print("maxPossibleChickens: " .. maxPossibleChickens .."")
 end
