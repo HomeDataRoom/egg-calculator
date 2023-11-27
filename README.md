@@ -22,3 +22,4 @@ Since this script only uses manual inputs and cannot directly access your Egg, I
 In general, the numbers output by the script should be interpreted as *predictions*, not definitive statements. You should cross-reference the script's outputs with the in-game projections to ensure they are relatively similar, preferring the in-game numbers if there are notable disparities.
 ## Credits
 <a href="https://github.com/homedataroom/egg-calculator/graphs/contributors"><img src="https://contrib.rocks/image?repo=homedataroom/egg-calculator"></a>
+- The [Egg, Inc. Wiki](https://egg-inc.fandom.com/)
