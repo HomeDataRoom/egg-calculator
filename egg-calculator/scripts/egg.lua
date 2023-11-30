@@ -1,5 +1,5 @@
-scriptVersion = "0.7" -- The current version of the script
-lastUpdatedDate = "11/27/2023" -- The date at which the script was last updated
+scriptVersion = "0.8" -- The current version of the script
+lastUpdatedDate = "11/29/2023" -- The date at which the script was last updated
 print("Welcome to the Egg Calculator, version " .. scriptVersion .. " last updated " .. lastUpdatedDate .. ".")
 githubLink = "https://github.com/homedataroom/egg-calculator" -- The link to the script's GitHub repository
 print("If you experience issues with this script or would like to know more about it, please visit the repository at " .. githubLink .. ".")
