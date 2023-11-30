@@ -172,10 +172,10 @@ totalInternalHatchery = internalHatchery * 4
 totalInternalHatcheryPerHour = totalInternalHatchery * 60
 totalInternalHatcheryPerDay = totalInternalHatcheryPerHour * 24
 chickensByEnd = math.min(math.floor((totalInternalHatcheryPerDay * daysRemaining) + chickens), maxPossibleChickens)
-projectedRateMinute = (chickensByEnd * eggsPerChicken) / 60
+projectedRateMinute = (chickensByEnd * eggsPerChicken) * 60
 print("\nEach chicken on your farm is laying " .. eggsPerChicken .. " eggs per second. By the end of the contract, your farm will have at least " .. makeReadable(chickensByEnd) .. " chickens on it.")
 projectedRateHour = projectedRateMinute * 60
-trillionProjectedRateHour = projectedRateHour / 1000000
+trillionProjectedRateHour = projectedRateHour / 1000000000
 print("If your egg laying rate stays consistent, your farm will be producing " .. trillionProjectedRateHour .. " trillion eggs per hour by the end of the contract.")
 if trillionProjectedRateHour >= trillionEggsRemainingPerHour then
     addConfidence(0.5)
