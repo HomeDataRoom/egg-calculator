@@ -13,7 +13,7 @@ This script was written for [Lua 5.4.6](https://www.lua.org/versions.html#5.4). 
 4. Run ``egg.bat`` if using Windows, or run ``egg.lua`` in any Lua environment.
    - If the batch file doesn't work, change the first file path to use the folder Lua is installed in.
 ## Limitations
-Since this script only uses manual inputs and cannot directly access your Egg, Inc. game or its servers, it has a few inherent limitations that make it more of a "side-grade" to the in-game projection feature.
+Since this script only uses manual inputs and does not directly access your Egg, Inc. game or its servers, it has a few inherent limitations that make it more of a "side-grade" to the in-game projection feature.
 1. The script does not (directly) take into account the effects of research, boosts, egg value, your mystical egg bonus, artifacts, events, or bonuses from in-app purchases or subscriptions. However, since many of these mechanics are interconnected, they are indirectly taken into account by the numbers you input into the script.
 2. The script assumes your maximum shipping rate is higher than your actual shipping rate, and that there are no bottlenecks as a result.
 3. The script assumes your maximum habitat space is high enough to not be bottlenecking your internal hatcheries.
